@@ -89,7 +89,7 @@ body {
   }
 
   .about-subtitle {
-    @apply absolute  md:top-[42%] bottom-[10%] max-w-[90%] text-center font-circular_web text-lg;
+    @apply absolute  md:top-[42%] top-[32%] max-w-[90%] text-center font-circular_web text-lg;
   }
 
   .about-image {
@@ -138,7 +138,7 @@ body {
     }
   } */
   .story-img-content {
-    @apply  md:h-[500px] h-[400px] mx-auto rounded-lg overflow-hidden;
+    @apply md:h-[500px] h-[400px] mx-auto rounded-lg overflow-hidden;
   }
 
   .gallery-img-container {

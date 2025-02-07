@@ -13,27 +13,25 @@ const About = () => {
   const clipImageRef = useRef(null);
   const aboutImageRef = useRef(null);
 
-  useGSAP(() => {
-    gsap.matchMedia().add('(min-width: 767px)', () => {
-      const clipAnimation = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#clip',
-          start: 'bottom bottom',
-          end: '+=500 center',
-          scrub: 0.5,
-          pin: true,
-          pinSpacing: true,
-        },
-      });
+ useGSAP(() => {
+   const clipAnimation = gsap.timeline({
+     scrollTrigger: {
+       trigger: '#clip',
+       start: 'bottom bottom',
+       end: '+=500 center',
+       scrub: 0.5,
+       pin: true,
+       pinSpacing: true,
+     },
+   });
 
-      clipAnimation.to('.mask-clip-path', {
-        width: '100%',
-        height: '100%',
-        borderRadius: 0,
-        rotate: 0,
-      });
-    });
-  }, []);
+   clipAnimation.to('.mask-clip-path', {
+     width: '100%',
+     height: '100%',
+     borderRadius: 0,
+     rotate: 0,
+   });
+ });
 
   const handleMouseMove = useCallback((event) => {
     const { clientX, clientY } = event;

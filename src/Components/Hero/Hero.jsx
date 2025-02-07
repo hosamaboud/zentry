@@ -47,19 +47,29 @@ const Hero = () => {
     { dependencies: [currentVideo], revertOnUpdate: true }
   );
   useGSAP(() => {
-    gsap.set('#video_Frame', {
-      clipPath: 'polygon(10% 0%, 80% 20%, 95% 85%, 0% 100%)',
-      ease: 'power1.inOut',
+    // للشاشات الكبيرة (أكبر من 768px)
+    gsap.matchMedia().add('(min-width: 769px)', () => {
+      gsap.set('#video_Frame', {
+        clipPath: 'polygon(10% 0%, 80% 20%, 95% 85%, 0% 100%)',
+      });
+
+      gsap.from('#video_Frame', {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut',
+        scrollTrigger: {
+          trigger: '#video_Frame',
+          start: 'center center',
+          end: 'bottom center',
+          scrub: true,
+        },
+      });
     });
-    gsap.from('#video_Frame', {
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-      ease: 'power1.inOut',
-      scrollTrigger: {
-        trigger: '#video_Frame',
-        start: 'center center',
-        end: 'bottom center',
-        scrub: true,
-      },
+
+    // للشاشات الصغيرة (أقل من 768px)
+    gsap.matchMedia().add('(max-width: 768px)', () => {
+      gsap.set('#video_Frame', {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      });
     });
   });
   const handelVideoLoaded = () => {
@@ -84,7 +94,7 @@ const Hero = () => {
       )}
       <div
         id="video_Frame"
-        className="relative z-10 h-dvh w-screen  overflow-hidden  bg-blue-75"
+        className="relative mask-clip-path z-10 h-dvh w-screen overflow-hidden bg-blue-75"
       >
         <div>
           <div className=" absolute-center z-50 cursor-pointer overflow-hidden  ">
