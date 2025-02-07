@@ -73,7 +73,7 @@ const VideoCard = ({
       )}
       <audio
         ref={audioVdRef}
-        src="/public/audio/hoverEffect.wav"
+        src="/audio/hoverEffect.wav"
         muted={!audioEnabled}
       />
       <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
