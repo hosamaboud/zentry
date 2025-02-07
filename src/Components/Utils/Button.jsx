@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from 'react';
 import { AudioContext } from '../../context/AudioContext';
 
-const Button = ({ title, leftIcon, rightIcon, containerClass }) => {
+const Button = ({ title, leftIcon, rightIcon, containerClass,srcAudio }) => {
   const buttonRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -47,7 +47,7 @@ const Button = ({ title, leftIcon, rightIcon, containerClass }) => {
     >
       <audio
         ref={audioRef}
-        src="/audio/ClickEffect.wav"
+        src={srcAudio}
         style={{ display: 'none' }}
       />
       {leftIcon}

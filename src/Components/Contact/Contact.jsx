@@ -92,6 +92,7 @@ const Contact = () => {
         <Button
           title="contact us"
           containerClass=" font-general z-40 px-7 py-3 mt-10 bg-blue-50"
+          srcAudio={'/audio/btn.mp3'}
         />
 
         {/* images of fire */}

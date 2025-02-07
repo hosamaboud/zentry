@@ -168,7 +168,7 @@ const Features = () => {
         <div ref={card1Ref}>
           <VideoCard
             addVideo
-            containerClass=" h-[80vh] md:h-[75vh]"
+            containerClass=" h-[400px] md:h-[500px]"
             title={
               <>
                 radia<b>n</b>t

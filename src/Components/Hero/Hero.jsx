@@ -47,7 +47,7 @@ const Hero = () => {
     { dependencies: [currentVideo], revertOnUpdate: true }
   );
   useGSAP(() => {
-    // للشاشات الكبيرة (أكبر من 768px)
+    
     gsap.matchMedia().add('(min-width: 769px)', () => {
       gsap.set('#video_Frame', {
         clipPath: 'polygon(10% 0%, 80% 20%, 95% 85%, 0% 100%)',
@@ -65,7 +65,6 @@ const Hero = () => {
       });
     });
 
-    // للشاشات الصغيرة (أقل من 768px)
     gsap.matchMedia().add('(max-width: 768px)', () => {
       gsap.set('#video_Frame', {
         clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
@@ -149,6 +148,7 @@ const Hero = () => {
               title="Watch Trailer"
               leftIcon={<TiLocationArrow />}
               containerClass="flex gap-1 items-center font-general px-7 py-3 bg-[#DF6D14] text-black"
+              srcAudio={'/audio/btn.mp3'}
             />
           </div>
         </div>

@@ -50,19 +50,19 @@ const About = () => {
       imageHeight < window.innerHeight * 0.9
     ) {
       gsap.to(clipRef.current, {
-        rotateX: deltaY * -5,
-        rotateY: deltaX * 12,
+        rotateX: deltaY * -15,
+        rotateY: deltaX * 15,
         duration: 0.5,
         overwrite: true,
         ease: 'power2.out',
-        transformPerspective: 1000,
+        transformPerspective: 800,
       });
       gsap.to(clipImageRef.current, {
-        rotateX: deltaY * -2,
-        rotateY: deltaX * 2,
+        rotateX: deltaY * -12,
+        rotateY: deltaX * 12,
         duration: 0.5,
         ease: 'power2.out',
-        transformPerspective: 1000,
+        transformPerspective: 800,
       });
     } else {
       gsap.to(clipRef.current, {
@@ -101,7 +101,7 @@ const About = () => {
   }, [handleMouseMove]);
 
   return (
-    <div id="about" className="w-screen h-[1450px] overflow-hidden">
+    <div id="about" className="w-screen h-[1330px] md:h-[1450px] overflow-hidden">
       <div className="relative mt-36 flex flex-col items-center gap-5 ">
         <AnimatedTitle
           subtitle="welcome to Zentry"

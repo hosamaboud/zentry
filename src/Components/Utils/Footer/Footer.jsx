@@ -12,6 +12,7 @@ const Footer = () => {
         <div className="flex gap-y-2 md:gap-4 flex-col md:flex-row mt-10 justify-center items-start">
           {foterItem.map((item, index) => (
             <Button
+              srcAudio={'/audio/nav_btn.mp3'}
               key={index}
               title={item}
               containerClass="px-7 py-3 font-general hover:text-[#5724ff] hover:bg-black text-black flex gap-2 items-center justify-start "

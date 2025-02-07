@@ -82,6 +82,7 @@ const Story = () => {
             <Button
               title="discover prologue"
               containerClass="px-7 py-3 mt-5 text-black  bg-[#5724ff] font-general  hover:bg-[#DF6D14]"
+              srcAudio={'/audio/btn.mp3'}
             />
           </div>
         </div>

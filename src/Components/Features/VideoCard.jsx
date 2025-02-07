@@ -1,6 +1,6 @@
 import { TiLocationArrow } from 'react-icons/ti';
 import Button from '../Utils/Button';
-import { useRef, useEffect, useContext } from 'react'; // أضف useContext
+import { useRef, useEffect, useContext } from 'react';
 import gsap from 'gsap';
 import { AudioContext } from '../../context/AudioContext';
 
@@ -13,7 +13,7 @@ const VideoCard = ({
   logo,
   containerClass,
 }) => {
-  const { audioEnabled } = useContext(AudioContext); // استخدام الـ Context
+  const { audioEnabled } = useContext(AudioContext);
   const cardRef = useRef(null);
   const videoRef = useRef(null);
   const audioVdRef = useRef(null);
@@ -29,8 +29,8 @@ const VideoCard = ({
         duration: 1,
         ease: 'power2.out',
       });
-      {
-        addVideo && video.play();
+      if (addVideo) {
+        video.play();
         if (audioEnabled) {
           audio.play().catch((error) => console.error('Audio error:', error));
         }
@@ -43,14 +43,26 @@ const VideoCard = ({
         duration: 1,
         ease: 'power2.out',
       });
-      {
-        addVideo && video.pause();
+      if (addVideo) {
+        video.pause();
         audio.pause();
       }
     };
 
     card.addEventListener('mouseenter', handleMouseEnter);
     card.addEventListener('mouseleave', handleMouseLeave);
+
+   
+    gsap.matchMedia().add('(max-width: 767px)', () => {
+      gsap.to(card, {
+        y: -15, 
+        scale: 0.95, 
+        duration: 1.5,
+        ease: 'power2.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+    });
 
     return () => {
       card.removeEventListener('mouseenter', handleMouseEnter);
@@ -73,7 +85,7 @@ const VideoCard = ({
       )}
       <audio
         ref={audioVdRef}
-        src="/audio/hoverEffect.wav"
+        src="/audio/video_hover.mp3"
         muted={!audioEnabled}
       />
       <div className="relative z-10 flex size-full flex-col justify-between p-5 text-blue-50">
@@ -92,6 +104,7 @@ const VideoCard = ({
             title="Coming soon"
             rightIcon={<TiLocationArrow />}
             containerClass="px-4 py-2  flex items-center gap-1 bg-yellow-400"
+            srcAudio={'/audio/btn.mp3'}
           />
         </div>
       )}

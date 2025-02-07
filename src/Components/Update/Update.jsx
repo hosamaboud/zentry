@@ -78,6 +78,20 @@ const Update = () => {
     gsap.matchMedia().add('(min-width: 768px)', () => {
       tl();
     });
+    // animation for mobile devices
+    gsap.matchMedia().add('(max-width: 767px)', () => {
+      imgRefs.current.forEach((img, index) => {
+        if (img) {
+          gsap.to(img, {
+            y: -20,
+            duration: 1.5 + index * 0.3,
+            ease: 'power1.inOut',
+            yoyo: true,
+            repeat: -1,
+          });
+        }
+      });
+    });
 
     // Cleanup function
     return () => {
@@ -107,6 +121,7 @@ const Update = () => {
           />
           <Button
             title="read all news"
+            srcAudio={'/audio/btn.mp3'}
             containerClass="px-7 py-3 font-general text-black bg-[#5724ff]"
           />
         </div>
@@ -122,7 +137,7 @@ const Update = () => {
               loading="lazy"
               key={index}
               ref={(el) => (imgRefs.current[index] = el)}
-              className="h-[400px] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff]"
+              className="h-[400px] mx-auto w-[80%] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff]"
               src={`/img/${src}`}
               alt="background image"
             />
