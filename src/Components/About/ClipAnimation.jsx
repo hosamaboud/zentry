@@ -1,7 +1,7 @@
 const ClipAnimation = ({ clipRef, clipImageRef, aboutImageRef }) => (
   <div
     id="clip"
-    className="overflow-hidden mt-5 relative flex justify-center items-center h-dvh w-full"
+    className="overflow-hidden z-10 mt-5 relative flex justify-center items-center h-dvh w-full"
     ref={clipRef}
   >
     <div

@@ -13,25 +13,25 @@ const About = () => {
   const clipImageRef = useRef(null);
   const aboutImageRef = useRef(null);
 
- useGSAP(() => {
-   const clipAnimation = gsap.timeline({
-     scrollTrigger: {
-       trigger: '#clip',
-       start: 'bottom bottom',
-       end: '+=500 center',
-       scrub: 0.5,
-       pin: true,
-       pinSpacing: true,
-     },
-   });
+  useGSAP(() => {
+    const clipAnimation = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#clip',
+        start: 'center center',
+        end: '+=500 center',
+        scrub: 0.5,
+        pin: true,
+        pinSpacing: true,
+      },
+    });
 
-   clipAnimation.to('.mask-clip-path', {
-     width: '100%',
-     height: '100%',
-     borderRadius: 0,
-     rotate: 0,
-   });
- });
+    clipAnimation.to('.mask-clip-path', {
+      width: '100%',
+      height: '100%',
+      borderRadius: 0,
+      rotate: 0,
+    });
+  });
 
   const handleMouseMove = useCallback((event) => {
     const { clientX, clientY } = event;
@@ -101,7 +101,7 @@ const About = () => {
   }, [handleMouseMove]);
 
   return (
-    <div id="about" className="w-screen overflow-hidden">
+    <div id="about" className="w-screen h-[1450px] overflow-hidden">
       <div className="relative mt-36 flex flex-col items-center gap-5 ">
         <AnimatedTitle
           subtitle="welcome to Zentry"
@@ -112,13 +112,14 @@ const About = () => {
           }
           style={'text-3xl md:text-2xl  mt-5'}
         />
-        <AboutContent />
+
         <ClipAnimation
           clipRef={clipRef}
           clipImageRef={clipImageRef}
           aboutImageRef={aboutImageRef}
         />
       </div>
+      <AboutContent />
     </div>
   );
 };
