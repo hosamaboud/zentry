@@ -20,7 +20,8 @@ const Update = () => {
         scrollTrigger: {
           trigger: textUpdate,
           start: 'top 15%',
-          end: '+=2150 center',
+          end: '+=2000 center',
+          toggleActions: 'play none none reverse',
           scrub: 0.5,
           pin: true,
           pinSpacing: true,
@@ -74,7 +75,7 @@ const Update = () => {
     });
 
     // Start animation for text update
-    gsap.matchMedia().add('(min-width: 1024px)', () => {
+    gsap.matchMedia().add('(min-width: 768px)', () => {
       tl();
     });
 
@@ -90,7 +91,7 @@ const Update = () => {
   }, []);
 
   return (
-    <div ref={frameRef} className="relative py-28 bg-black text-white">
+    <div ref={frameRef} className="relative py-10 md:py-28 bg-black text-white">
       <div className="mx-auto w-[90%] grid grid-cols-1 md:grid-cols-2">
         <div
           ref={updateRef}
@@ -118,9 +119,10 @@ const Update = () => {
             'gallery-5.webp',
           ].map((src, index) => (
             <img
+              loading="lazy"
               key={index}
               ref={(el) => (imgRefs.current[index] = el)}
-              className="h-[50vh] md:h-[70vh] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff]"
+              className="h-[400px] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff]"
               src={`/img/${src}`}
               alt="background image"
             />

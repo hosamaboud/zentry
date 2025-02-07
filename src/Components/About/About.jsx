@@ -1,10 +1,10 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { useRef, useCallback, useEffect } from "react";
-import AnimatedTitle from "../Utils/AnimatedTitle";
-import AboutContent from "./AboutContent";
-import ClipAnimation from "./ClipAnimation";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+import { useRef, useCallback, useEffect } from 'react';
+import AnimatedTitle from '../Utils/AnimatedTitle';
+import AboutContent from './AboutContent';
+import ClipAnimation from './ClipAnimation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,24 +14,26 @@ const About = () => {
   const aboutImageRef = useRef(null);
 
   useGSAP(() => {
-    const clipAnimation = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#clip",
-        start: "bottom bottom",
-        end: "+=500 center",
-        scrub: 0.5,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
+    gsap.matchMedia().add('(min-width: 767px)', () => {
+      const clipAnimation = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#clip',
+          start: 'bottom bottom',
+          end: '+=500 center',
+          scrub: 0.5,
+          pin: true,
+          pinSpacing: true,
+        },
+      });
 
-    clipAnimation.to(".mask-clip-path", {
-      width: "100%",
-      height: "100%",
-      borderRadius: 0,
-      rotate: 0,
+      clipAnimation.to('.mask-clip-path', {
+        width: '100%',
+        height: '100%',
+        borderRadius: 0,
+        rotate: 0,
+      });
     });
-  });
+  }, []);
 
   const handleMouseMove = useCallback((event) => {
     const { clientX, clientY } = event;
@@ -54,14 +56,14 @@ const About = () => {
         rotateY: deltaX * 12,
         duration: 0.5,
         overwrite: true,
-        ease: "power2.out",
+        ease: 'power2.out',
         transformPerspective: 1000,
       });
       gsap.to(clipImageRef.current, {
         rotateX: deltaY * -2,
         rotateY: deltaX * 2,
         duration: 0.5,
-        ease: "power2.out",
+        ease: 'power2.out',
         transformPerspective: 1000,
       });
     } else {
@@ -69,13 +71,13 @@ const About = () => {
         rotateX: 0,
         rotateY: 0,
         duration: 0.5,
-        ease: "power2.out",
+        ease: 'power2.out',
       });
       gsap.to(clipImageRef.current, {
         rotateX: 0,
         rotateY: 0,
         duration: 0.5,
-        ease: "power2.out",
+        ease: 'power2.out',
       });
     }
   }, []);
@@ -93,10 +95,10 @@ const About = () => {
     };
 
     const throttledMouseMove = throttle(handleMouseMove, 50);
-    window.addEventListener("mousemove", throttledMouseMove);
+    window.addEventListener('mousemove', throttledMouseMove);
 
     return () => {
-      window.removeEventListener("mousemove", throttledMouseMove);
+      window.removeEventListener('mousemove', throttledMouseMove);
     };
   }, [handleMouseMove]);
 

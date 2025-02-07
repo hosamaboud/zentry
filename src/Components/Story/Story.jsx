@@ -16,9 +16,9 @@ const Story = () => {
     const offsetY = (clientY - centerY) / centerY;
 
     gsap.to(frameRef.current, {
-      rotateY: offsetX * 8,
-      rotateX: offsetY * -8,
-      transformPerspective: 1200,
+      rotateY: offsetX * 10,
+      rotateX: offsetY * -10,
+      transformPerspective: 800,
       duration: 0.5,
       ease: 'power2.out',
       transformOrigin: 'center center',
@@ -42,7 +42,7 @@ const Story = () => {
   }, [handleMouseMove]);
 
   return (
-    <section className="relative bg-black min-h-screen text-blue-50 w-screen">
+    <section className="relative bg-black  md:h-[800px] text-blue-50 w-screen">
       <div className="flex items-center flex-col size-full py-10 pb-20">
         {/*Header section*/}
         <AnimatedTitle
@@ -61,17 +61,18 @@ const Story = () => {
           <div className="story-img-mask">
             <div className="story-img-content ">
               <img
+                loading="lazy"
                 ref={imgRef}
-                src="/public/img/entrance.webp"
+                src="/img/entrance.webp"
                 alt="entrance"
-                className="object-cover object-center"
+                className="w-full h-f object-cover object-center"
               />
             </div>
           </div>
           {/* SVG for rounded corners */}
-          <Svg />
+       
         </div>
-        <div className="md:-mt-28  flex md:text-[12px] md:ml-[50%] items-end text-blue-50 ">
+        <div className="mt-2 md:-mt-28 flex md:text-[12px] md:ml-[50%] items-end text-blue-50 ">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="mt-3 max-w-[300px] text-center font-circular-web text-violet-50 md:text-start">
               Where realms converge, lies Zentry and the boundless pillar.

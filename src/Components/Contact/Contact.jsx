@@ -52,21 +52,23 @@ const Contact = () => {
   return (
     <div
       ref={containerRef}
-      className="relative bg-[#5724ff] flex flex-col items-center h-[130vh] md:h-auto overflow-hidden"
+      className="relative bg-[#5724ff] flex flex-col items-center h-[850px] md:h-auto overflow-hidden"
     >
       <Svg />
 
       {/* swordman image */}
       <div
         ref={(el) => (imgRefs.current[0] = el)}
-        className="z-10 absolute top-0 md:top-10 md:-right-1"
+        className="z-10 absolute top-4 md:top-10 md:-right-1"
       >
         <img
+          loading="lazy"
           className="top-0 z-10 h-[300px] md:h-auto md:w-[280px]"
           src="/img/swordman-partial.webp"
           alt="swordman"
         />
         <img
+          loading="lazy"
           className="z-0 h-[300px] md:h-auto sword-man-clip-path absolute top-0 right-0 md:w-[280px]"
           src="/img/swordman.webp"
           alt="swordman"
@@ -74,7 +76,7 @@ const Contact = () => {
       </div>
 
       {/* contact section */}
-      <div className="h-[120vh] relative overflow-hidden bg-black my-10 md:h-[85vh] w-[95%] mx-auto grid justify-items-center md:content-center content-start rounded-3xl">
+      <div className="h-[1000px] relative overflow-hidden bg-black my-16  md:h-[85vh] w-[95%] mx-auto grid justify-items-center md:content-center content-start rounded-3xl">
         <div className="z-40 mt-80 md:mt-0 text-blue-50 w-[55%]">
           <AnimatedTitle
             subtitle="Join Zentry"
@@ -88,7 +90,7 @@ const Contact = () => {
           />
         </div>
         <Button
-          title='contact us'
+          title="contact us"
           containerClass=" font-general z-40 px-7 py-3 mt-10 bg-blue-50"
         />
 
@@ -98,6 +100,7 @@ const Contact = () => {
           className="rounded-lg overflow-hidden hidden md:block contact-clip-path-1"
         >
           <img
+            loading="lazy"
             className="object-cover object-center w-[400px] h-[300px]"
             src="/img/contact-1.webp"
             alt="fire"
@@ -109,6 +112,7 @@ const Contact = () => {
           className="contact-clip-path-2 z-0"
         >
           <img
+            loading="lazy"
             className="object-cover object-center w-[300px] h-[300px]"
             src="/img/contact-2.webp"
             alt="fire"

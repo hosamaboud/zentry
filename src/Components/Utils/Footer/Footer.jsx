@@ -5,7 +5,7 @@ import Logo from '../Logo';
 const Footer = () => {
   const foterItem = ['About', 'Contact', 'Zigma', 'Terms & Conditions'];
   return (
-    <div className="bg-[#5724ff] h-[70vh] md:h-[60vh] py-6 flex flex-col items-center justify-between w-[100%] ">
+    <div className="bg-[#5724ff] h-[400px] md:h-[300px] py-6 flex flex-col items-center justify-between w-[100%] ">
       <div className="bg-black w-[90%] h-[1px]"></div>
       <div className="flex  justify-between items-center w-[90%] mx-auto">
         <Logo size="w-[0px] h-[100px]" style="h-[50px] w-[50px] bg-black" />

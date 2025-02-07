@@ -5,7 +5,7 @@ const ProductsButton = () => (
   <Button
     to={'/products'}
     id="product-btn"
-    containerClass="md:flex md:w-[140px] px-4 py-2   gap-1 hidden items-center justify-center bg-blue-50 text-black "
+    containerClass="md:flex md:w-[140px] px-2 py-2 gap-1 hidden items-center justify-center bg-blue-50 text-black "
     title="Products"
     rightIcon={
       <TiLocationArrow className="group-hover:rotate-[45deg] group-hover:translate-x-1 transition-transform duration-300 ease-in" />
