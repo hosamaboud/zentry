@@ -125,7 +125,7 @@ const Update = () => {
   }, []);
 
   return (
-    <div ref={frameRef} className="relative py-10 md:py-28 bg-black text-white">
+    <div ref={frameRef} className="overflow-hidden relative py-10 md:py-28 bg-black text-white">
       <div className="mx-auto w-[90%] grid grid-cols-1 md:grid-cols-2">
         <div
           ref={updateRef}
