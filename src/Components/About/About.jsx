@@ -18,7 +18,7 @@ const About = () => {
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: '#clip',
-        start: 'center center',
+        start: 'top top',
         end: '+=500 center',
         scrub: 0.5,
         pin: true,
@@ -103,7 +103,7 @@ const About = () => {
   }, [disableMouseMove]);
 
   return (
-    <div id="about" className="h-auto md:min-h-screen w-screen">
+    <div id="about" className="min-h-screen w-screen">
       <div className="relative mt-24 mb-8 flex flex-col items-center gap-5">
         <AnimatedTitle
           subtitle="welcome to Zentry"
