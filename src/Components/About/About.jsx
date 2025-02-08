@@ -48,7 +48,7 @@ const About = () => {
       const offsetY = (clientY - centerY) / centerY;
       const rotateX = offsetY * -10;
       const rotateY = offsetX * 10;
-      const s = 1 + Math.abs( offsetX) * 0.07;
+      const s = 1 + Math.abs(offsetX) * 0.07;
 
       gsap.to([clip, clipImage], {
         rotateX,
@@ -103,8 +103,8 @@ const About = () => {
   }, [disableMouseMove]);
 
   return (
-    <div id="about" className="min-h-screen w-screen">
-      <div className="relative mt-36 mb-8 flex flex-col items-center gap-5">
+    <div id="about" className="h-auto md:min-h-screen w-screen">
+      <div className="relative mt-24 mb-8 flex flex-col items-center gap-5">
         <AnimatedTitle
           subtitle="welcome to Zentry"
           title={
