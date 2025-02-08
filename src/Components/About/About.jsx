@@ -62,11 +62,10 @@ const About = () => {
     };
     // check if the image is ending
     const observer = new MutationObserver(() => {
-      const { width, height } = clipImage.getBoundingClientRect();
+      const { width } = clipImage.getBoundingClientRect();
       const parentWidth = clip.clientWidth;
-      const parentHeight = clip.clientHeight;
 
-      if (width >= parentWidth && height >= parentHeight) {
+      if (width >= parentWidth) {
         setDisableMouseMove(true);
         // reset animation state
         gsap.to([clip, clipImage], {
