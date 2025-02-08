@@ -19,7 +19,7 @@ const About = () => {
       scrollTrigger: {
         trigger: '#clip',
         start: 'center center',
-        end: '+=300 center',
+        end: '+=500 center',
         scrub: 0.5,
         pin: true,
         pinSpacing: true,
@@ -46,17 +46,17 @@ const About = () => {
       const centerY = window.innerHeight / 2;
       const offsetX = (clientX - centerX) / centerX;
       const offsetY = (clientY - centerY) / centerY;
-      const rotateX = offsetY * -20;
-      const rotateY = offsetX * 20;
-      const s = 1 + Math.abs(offsetX) * 0.1;
+      const rotateX = offsetY * -10;
+      const rotateY = offsetX * 10;
+      const s = 1 + Math.abs( offsetX) * 0.07;
 
       gsap.to([clip, clipImage], {
         rotateX,
         rotateY,
         scale: s,
-        transformPerspective: 1200,
+        transformPerspective: 800,
         transformOrigin: 'center center',
-        duration: 0.5,
+        duration: 0.8,
         ease: 'power2.out',
       });
     };
@@ -66,14 +66,14 @@ const About = () => {
       const parentWidth = clip.clientWidth;
       const parentHeight = clip.clientHeight;
 
-      if (width >= parentWidth && height >= parentHeight) {
+      if (width >= parentWidth * 0.7 && height >= parentHeight * 0.7) {
         setDisableMouseMove(true);
         // reset animation state
         gsap.to([clip, clipImage], {
           rotateX: 0,
           rotateY: 0,
           scale: 1,
-          duration: 0.1,
+          duration: 0.8,
           ease: 'power2.out',
         });
       } else {

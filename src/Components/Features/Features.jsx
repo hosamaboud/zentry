@@ -20,7 +20,7 @@ const Features = () => {
     const card4 = card4Ref.current;
     const card5 = card5Ref.current;
     const lastOne = lastVideo.current;
-  
+
     gsap.fromTo(
       title,
       { opacity: 0, x: -100 },
@@ -62,6 +62,7 @@ const Features = () => {
           trigger: card1,
           start: 'top 80%',
           end: 'top 20%',
+          scrub: 0.5,
           toggleActions: 'play none none reverse',
         },
       }
@@ -78,6 +79,7 @@ const Features = () => {
           trigger: lastOne,
           start: 'top 80%',
           end: 'top 20%',
+          scrub: 0.5,
           toggleActions: 'play none none reverse',
         },
       }
@@ -92,8 +94,9 @@ const Features = () => {
         duration: 1,
         scrollTrigger: {
           trigger: card2,
-          start: 'top 80%',
-          end: 'top 20%',
+          start: 'top 85%',
+          end: 'top 50%',
+          scrub: 0.5,
           toggleActions: 'play none none reverse',
         },
       }
@@ -107,8 +110,9 @@ const Features = () => {
         duration: 1,
         scrollTrigger: {
           trigger: card3,
-          start: 'top 80%',
-          end: 'top 20%',
+          start: 'top 85%',
+          end: 'top 50%',
+          scrub: 0.5,
           toggleActions: 'play none none reverse',
         },
       }
@@ -122,13 +126,13 @@ const Features = () => {
         duration: 1,
         scrollTrigger: {
           trigger: card4,
-          start: 'top 80%',
-          end: 'top 20%',
+          start: 'center 100%', 
+          end: 'bottom bottom ',
+          scrub: 0.5, 
           toggleActions: 'play none none reverse',
         },
       }
     );
- 
   }, []);
 
   return (
@@ -161,8 +165,11 @@ const Features = () => {
           />
         </div>
 
-        <div className=" grid h-[55rem] grid-cols-1 md:grid-cols-2  md:gap-7">
-          <div ref={card2Ref} className="order-3 md:order-1 md:row-span-2 ml-auto w-[80%] md:w-full">
+        <div className=" grid h-[55rem] md:h-[35rem] grid-cols-1 md:grid-cols-2  md:gap-7">
+          <div
+            ref={card2Ref}
+            className="order-3 md:order-1 md:row-span-2 ml-auto w-[80%] md:w-full"
+          >
             <VideoCard
               addVideo
               containerClass=" h-[400px]  md:h-full "
@@ -177,7 +184,7 @@ const Features = () => {
             />
           </div>
 
-          <div className='order-1  ml-auto w-[50%] md:w-full' ref={card3Ref}>
+          <div className="order-1  ml-auto w-[50%] md:w-full" ref={card3Ref}>
             <VideoCard
               addVideo
               containerClass="md:row-span-1 h-[200px] md:h-full "
@@ -207,7 +214,7 @@ const Features = () => {
           </div>
         </div>
         <div className=" grid gap-3  md:gap-7 grid-cols-1 md:grid-cols-2">
-          <div className='mr-auto w-[50%] md:w-full' ref={card5Ref}>
+          <div className="mr-auto w-[50%] md:w-full" ref={card5Ref}>
             <VideoCard
               containerClass=" col-span-1 h-[200px] md:h-full bg-[#5724ff] "
               title={

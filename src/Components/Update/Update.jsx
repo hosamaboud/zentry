@@ -13,7 +13,7 @@ const Update = () => {
 
   useEffect(() => {
     const textUpdate = updateRef.current;
-
+    const mm = gsap.matchMedia();
     // Initialize ScrollTrigger
     const tl = () => {
       gsap.timeline({
@@ -73,13 +73,33 @@ const Update = () => {
         img.addEventListener('mouseleave', handleMouseLeave);
       }
     });
+    imgRefs.current.forEach((img) => {
+      if (img) {
+        gsap.fromTo(
+          img,
+          { opacity: 0, x: 200 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: img,
+              start: 'top 80%',
+              end: 'top 20%',
+              scrub: 0.5,
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    });
 
     // Start animation for text update
-    gsap.matchMedia().add('(min-width: 768px)', () => {
+    mm.add('(min-width: 768px)', () => {
       tl();
     });
     // animation for mobile devices
-    gsap.matchMedia().add('(max-width: 767px)', () => {
+    mm.add('(max-width: 767px)', () => {
       imgRefs.current.forEach((img, index) => {
         if (img) {
           gsap.to(img, {
@@ -137,9 +157,11 @@ const Update = () => {
               loading="lazy"
               key={index}
               ref={(el) => (imgRefs.current[index] = el)}
-              className="h-[400px] mx-auto w-[80%] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff]"
               src={`/img/${src}`}
               alt="background image"
+              className={`w-[80%] cursor-pointer object-cover object-center rounded-lg border border-[#5724ff] 
+        h-[300px] md:h-[400px] 
+        ${index % 2 === 0 ? 'ml-auto' : 'mr-auto'}`}
             />
           ))}
         </div>
