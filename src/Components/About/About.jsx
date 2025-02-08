@@ -1,7 +1,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import AnimatedTitle from '../Utils/AnimatedTitle';
 import AboutContent from './AboutContent';
 import ClipAnimation from './ClipAnimation';
@@ -12,13 +12,14 @@ const About = () => {
   const clipRef = useRef(null);
   const clipImageRef = useRef(null);
   const aboutImageRef = useRef(null);
+  const [disableMouseMove, setDisableMouseMove] = useState(false);
 
   useGSAP(() => {
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: '#clip',
         start: 'center center',
-        end: '+=500 center',
+        end: '+=300 center',
         scrub: 0.5,
         pin: true,
         pinSpacing: true,
@@ -33,76 +34,77 @@ const About = () => {
     });
   });
 
-  const handleMouseMove = useCallback((event) => {
-    const { clientX, clientY } = event;
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+  useEffect(() => {
+    const clip = clipRef.current;
+    const clipImage = clipImageRef.current;
 
-    const deltaX = (clientX - centerX) / centerX;
-    const deltaY = (clientY - centerY) / centerY;
+    const handleMouseMove = (e) => {
+      if (disableMouseMove) return;
 
-    const imageElement = aboutImageRef.current;
-    const imageWidth = imageElement.offsetWidth;
-    const imageHeight = imageElement.offsetHeight;
+      const { clientX, clientY } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const offsetX = (clientX - centerX) / centerX;
+      const offsetY = (clientY - centerY) / centerY;
+      const rotateX = offsetY * -20;
+      const rotateY = offsetX * 20;
+      const s = 1 + Math.abs(offsetX) * 0.1;
 
-    if (
-      imageWidth < window.innerWidth * 0.9 ||
-      imageHeight < window.innerHeight * 0.9
-    ) {
-      gsap.to(clipRef.current, {
-        rotateX: deltaY * -15,
-        rotateY: deltaX * 15,
-        duration: 0.5,
-        overwrite: true,
-        ease: 'power2.out',
-        transformPerspective: 800,
-      });
-      gsap.to(clipImageRef.current, {
-        rotateX: deltaY * -12,
-        rotateY: deltaX * 12,
-        duration: 0.5,
-        ease: 'power2.out',
-        transformPerspective: 800,
-      });
-    } else {
-      gsap.to(clipRef.current, {
-        rotateX: 0,
-        rotateY: 0,
+      gsap.to([clip, clipImage], {
+        rotateX,
+        rotateY,
+        scale: s,
+        transformPerspective: 1200,
+        transformOrigin: 'center center',
         duration: 0.5,
         ease: 'power2.out',
       });
-      gsap.to(clipImageRef.current, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.5,
-        ease: 'power2.out',
+    };
+    // check if the image is ending
+    const observer = new MutationObserver(() => {
+      const { width, height } = clipImage.getBoundingClientRect();
+      const parentWidth = clip.clientWidth;
+      const parentHeight = clip.clientHeight;
+
+      if (width >= parentWidth && height >= parentHeight) {
+        setDisableMouseMove(true);
+        // reset animation state
+        gsap.to([clip, clipImage], {
+          rotateX: 0,
+          rotateY: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power2.out',
+        });
+      } else {
+        setDisableMouseMove(false);
+      }
+    });
+
+    if (clipImage) {
+      observer.observe(clipImage, {
+        attributes: true,
+        attributeFilter: ['style'],
       });
     }
-  }, []);
 
-  useEffect(() => {
-    const throttle = (callback, limit) => {
-      let waiting = false;
-      return (...args) => {
-        if (!waiting) {
-          callback(...args);
-          waiting = true;
-          setTimeout(() => (waiting = false), limit);
-        }
-      };
-    };
-
-    const throttledMouseMove = throttle(handleMouseMove, 50);
-    window.addEventListener('mousemove', throttledMouseMove);
+    if (clip) {
+      clip.addEventListener('mousemove', handleMouseMove);
+    }
 
     return () => {
-      window.removeEventListener('mousemove', throttledMouseMove);
+      if (clip) {
+        clip.removeEventListener('mousemove', handleMouseMove);
+      }
+      if (clipImage) {
+        observer.disconnect();
+      }
     };
-  }, [handleMouseMove]);
+  }, [disableMouseMove]);
 
   return (
-    <div id="about" className="w-screen h-[1330px] md:h-[1450px] overflow-hidden">
-      <div className="relative mt-36 flex flex-col items-center gap-5 ">
+    <div id="about" className="min-h-screen w-screen">
+      <div className="relative mt-36 mb-8 flex flex-col items-center gap-5">
         <AnimatedTitle
           subtitle="welcome to Zentry"
           title={
@@ -110,16 +112,16 @@ const About = () => {
               Disc<b>o</b>ver the world's largest <br /> shared <b>a</b>dventure
             </>
           }
-          style={'text-3xl md:text-2xl  mt-5'}
+          style={'text-3xl md:text-2xl mt-5'}
         />
 
-        <ClipAnimation
-          clipRef={clipRef}
-          clipImageRef={clipImageRef}
-          aboutImageRef={aboutImageRef}
-        />
+        <AboutContent />
       </div>
-      <AboutContent />
+      <ClipAnimation
+        clipRef={clipRef}
+        clipImageRef={clipImageRef}
+        aboutImageRef={aboutImageRef}
+      />
     </div>
   );
 };

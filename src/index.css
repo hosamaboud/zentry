@@ -10,6 +10,7 @@ body {
   font-family: 'General Sans', sans-serif;
 }
 
+
 @layer base {
   @font-face {
     font-family: 'circular-web';
@@ -89,12 +90,12 @@ body {
   }
 
   .about-subtitle {
-    @apply sticky mx-auto  bottom-[550px] z-0 max-w-[90%] text-center font-circular_web text-lg;
+   @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular_web text-lg md:max-w-[34rem]; 
   }
 
   .about-image {
     border: 1px solid black;
-    @apply absolute left-1/2 top-0 z-20 h-[220px] w-[120px]  sm:h-[300px] sm:w-[200px] md:h-[220px] md:w-[120px] origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:h-[400px] md:w-[250px];
+    @apply absolute left-1/2 top-0 z-20 h-[220px] w-[120px]  sm:h-[300px] sm:w-[200px] md:h-[350px] origin-center -translate-x-1/2 overflow-hidden rounded-3xl;
   }
 
   .animated-title {

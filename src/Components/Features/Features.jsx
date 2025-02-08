@@ -20,23 +20,7 @@ const Features = () => {
     const card4 = card4Ref.current;
     const card5 = card5Ref.current;
     const lastOne = lastVideo.current;
-
-    const handleMouseEnter = () => {
-      gsap.to(lastOne, {
-        scale: 0.95,
-        duration: 1,
-        ease: 'power2.out',
-      });
-    };
-    const handleMouseLeave = () => {
-      gsap.to(lastOne, {
-        scale: 1,
-        duration: 1,
-        ease: 'power2.out',
-      });
-    };
-    lastOne.addEventListener('mouseenter', handleMouseEnter);
-    lastOne.addEventListener('mouseleave', handleMouseLeave);
+  
     gsap.fromTo(
       title,
       { opacity: 0, x: -100 },
@@ -144,17 +128,14 @@ const Features = () => {
         },
       }
     );
-    return () => {
-      lastOne.removeEventListener('mouseenter', handleMouseEnter);
-      lastOne.removeEventListener('mouseleave', handleMouseLeave);
-    };
+ 
   }, []);
 
   return (
-    <section className="bg-black pb-32 grid px-8 md:px-28 overflow-hidden ">
+    <section className="bg-black pb-32 grid  md:px-10 overflow-hidden ">
       {/* features  title */}
 
-      <div ref={titleRef} className=" flex flex-col my-24 items-start">
+      <div ref={titleRef} className=" flex flex-col my-24 px-16 items-start">
         <p className="text-blue-50">Explore the Zentry Universe</p>
         <p className="text-blue-50 opacity-50 mt-4 max-w-md ">
           Immerse yourself in an IP-rich product universe where AI-driven
@@ -164,11 +145,11 @@ const Features = () => {
       </div>
 
       {/* features  container */}
-      <div className="flex flex-col h-max w-[90%] md:w-full mx-auto gap-7 ">
+      <div className="flex flex-col h-max w-[95%] md:w-full mx-auto gap-7 ">
         <div ref={card1Ref}>
           <VideoCard
             addVideo
-            containerClass=" h-[400px] md:h-[500px]"
+            containerClass=" h-[400px] md:h-[500px] "
             title={
               <>
                 radia<b>n</b>t
@@ -180,11 +161,11 @@ const Features = () => {
           />
         </div>
 
-        <div className=" grid h-[220vh] md:h-[130vh] grid-cols-1 md:grid-cols-2 gap-3 md:gap-7">
-          <div ref={card2Ref} className="row-span-1 md:row-span-2">
+        <div className=" grid h-[55rem] grid-cols-1 md:grid-cols-2  md:gap-7">
+          <div ref={card2Ref} className="order-3 md:order-1 md:row-span-2 ml-auto w-[80%] md:w-full">
             <VideoCard
               addVideo
-              containerClass=" h-[90vh] md:h-full "
+              containerClass=" h-[400px]  md:h-full "
               title={
                 <>
                   Zig<b>m</b>a
@@ -196,10 +177,10 @@ const Features = () => {
             />
           </div>
 
-          <div ref={card3Ref}>
+          <div className='order-1  ml-auto w-[50%] md:w-full' ref={card3Ref}>
             <VideoCard
               addVideo
-              containerClass="md:row-span-1 h-[60vh] md:h-full "
+              containerClass="md:row-span-1 h-[200px] md:h-full "
               title={
                 <>
                   N<b>e</b>xus
@@ -210,10 +191,10 @@ const Features = () => {
               comingSoon
             />
           </div>
-          <div ref={card4Ref}>
+          <div className="mr-auto w-[80%] md:w-full order-2" ref={card4Ref}>
             <VideoCard
               addVideo
-              containerClass="md:row-span-1 h-[60vh] md:h-full "
+              containerClass="md:row-span-1  h-[240px] md:h-full  "
               title={
                 <>
                   Az<b>u</b>l
@@ -226,9 +207,9 @@ const Features = () => {
           </div>
         </div>
         <div className=" grid gap-3  md:gap-7 grid-cols-1 md:grid-cols-2">
-          <div ref={card5Ref}>
+          <div className='mr-auto w-[50%] md:w-full' ref={card5Ref}>
             <VideoCard
-              containerClass=" col-span-1 h-[60vh] md:h-full bg-[#5724ff] "
+              containerClass=" col-span-1 h-[200px] md:h-full bg-[#5724ff] "
               title={
                 <div className="max-w-28 text-black">
                   m<b>o</b>re co<b>m</b>ing s<b>o</b>o<b>n</b>.
