@@ -14,29 +14,32 @@ const About = () => {
   const aboutImageRef = useRef(null);
   const [disableMouseMove, setDisableMouseMove] = useState(false);
 
- useGSAP(() => {
-   const ctx = gsap.context(() => {
-     gsap
-       .timeline({
-         scrollTrigger: {
-           trigger: '#clip',
-           start: 'top top',
-           end: '+=50vh center',
-           scrub: 0.5,
-           pin: true,
-         },
-       })
-       .to('.mask-clip-path', {
-         width: '100%',
-         height: '100%',
-         borderRadius: 0,
-         rotate: 0,
-         ease: 'power2.out', 
-       });
-   });
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#clip',
+            start: 'top top',
+            end: '+=90vh center',
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            duration: 1,
+          },
+        })
+        .to('.mask-clip-path', {
+          width: '100%',
+          height: '100%',
+          borderRadius: 0,
+          rotate: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+    });
 
-   return () => ctx.revert();
- });
+    return () => ctx.revert();
+  });
 
   useEffect(() => {
     const clip = clipRef.current;

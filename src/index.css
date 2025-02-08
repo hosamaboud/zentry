@@ -90,7 +90,7 @@ body {
   }
 
   .about-subtitle {
-   @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular_web text-lg md:max-w-[34rem]; 
+   @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-80 -translate-x-1/2 text-center font-circular_web text-lg md:max-w-[34rem]; 
   }
 
   .about-image {
